@@ -1,1 +1,178 @@
-Calculadora SST
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<title>SST - Calculadora</title>
+	
+	<style>
+		
+		@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+		
+		
+		body {
+			background-color: #ededed;
+			color: black;
+			font-size: 1em;
+			font-family: 'Roboto', sans-serif;
+		}
+		
+		h1 {
+			margin-top: 30px;
+			margin-bottom: 30px;
+			font-size: 1.8em;
+		}
+		
+		.fb-panel {
+			margin: auto;
+			width: 100%;
+			max-width: 600px;
+		}
+		
+		.fb-form {
+			border-radius: 3px;
+			/*border: 1px solid #e3e7e8;*/
+		}
+		
+		.fb-input-label {
+			width: 120px;
+		}
+		
+		
+		.fb-btn {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.btn-primary {
+			background-color: #2a4e78;
+			border-color: #2a4e78;
+		} .btn-primary:hover {
+			background-color: #203d5e;
+			border-color: #203d5e;
+		} .btn-primary:active {
+			background-color: #203d5e;
+			border-color: #203d5e;
+		} .btn-primary:visited {
+			background-color: #2a4e78;
+			border-color: #2a4e78;
+		}
+		
+		.fb-result {
+			display: none;
+			padding: 30px;
+			background-color: #bccfe6;
+			border: 1px solid #366399;
+			border-radius: 3px;
+			color: #366399;
+			margin-top: 30px;
+			font-size: 1.2em;
+		}
+		.fb-goal-info {
+			font-weight: 900;
+		}
+		.fb-result p:last-child {
+			margin-bottom: 0;
+		}
+		
+		
+		
+	</style>
+</head>
+<body class="">
+	<nav class="navbar navbar-dark bg-dark" style="padding: 24px 0;">
+		<img src="https://serioussixtraining.com/build/assets/logo-full-be2cedb4.png" width="200" class="d-inline-block align-top" alt="Logo" style="margin: auto; margin-top: 5px; margin-bottom: 5px;">
+	</nav>
+	
+	<div class="container">
+		
+		<h1 class="text-center">Calculadora</h1>
+		
+		<div class="fb-panel fb-form">
+			
+			<form id="fb-calc-form">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text fb-input-label">Estatura</span>
+					</div>
+					<input type="number" class="form-control" name="height-input" id="height-input" required>
+					<div class="input-group-append">
+						<span class="input-group-text">cm</span>
+					</div>
+				</div>
+				
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text fb-input-label">Peso</span>
+					</div>
+					<input type="text" class="form-control" name="weight-input" id="weight-input" required>
+					<div class="input-group-append">
+						<span class="input-group-text">kg</span>
+					</div>
+				</div>
+				
+				<button class="btn btn-primary btn-block" type="submit">Calcular</button>
+			</form>
+			
+			<div class="fb-result">
+				<p>Estatura: <span id="height-info"></span> cm</p>
+				<p>Peso: <span id="weight-info"></span> kg</p>
+				<!-- <p>Edad: <span id="age-info">28</span> años</p> -->
+				<p class="">Calorías de mantenimiento: <span style="margin-left: 4px;" class="fb-goal-info" id="goal-mtn-info"></span> kCal</p>
+				<p class="">Calorías para cut: <span style="margin-left: 4px;" class="fb-goal-info" id="goal-cut-info"></span> kCal</p>
+				<p class="">Ingesta Diaria de Proteína: <span style="margin-left: 4px;" class="fb-goal-info" id="goal-protein-info"></span> gr</p>
+			</div>
+			
+		</div>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		
+		$( "form" ).submit(function( event ) {
+			event.preventDefault();
+			
+			// Get values
+			var height = $( "#height-input" ).val();
+			var weight = $( "#weight-input" ).val();
+			// var age = $( "#age-input" ).val();
+			
+			// Fill result values
+			$( "#height-info" ).html(height);
+			$( "#weight-info" ).html(weight);
+			// $( "#age-info" ).html(age);
+			
+			// Calculate BMI
+			var heightInMeters = height / 100;
+			var bmi = weight / (heightInMeters * heightInMeters);
+			
+			// Calculate required deficit
+			var deficit;
+			if (bmi < 24.91) { deficit = .10; }
+			else if (bmi < 29.91) { deficit = .20; }
+			else if (bmi < 34.91) { deficit = .25; }
+			else { deficit = .30; }
+			
+			// Calculate maintenance calories
+			var mtnKcal = weight * 28;
+			$( "#goal-mtn-info" ).html(mtnKcal);
+			
+			// Calculate daily calorie goal
+			var goalKcal = mtnKcal - 400;
+			$( "#goal-cut-info" ).html(goalKcal);
+			
+			// Calculate daily protein goal
+			var goalProtein = (goalKcal / 13);
+			$( "#goal-protein-info" ).html(goalProtein);
+			
+			// Show results
+			$( ".fb-result" ).show();
+			
+		});
+		
+	</script>
+</body>
+</html>
