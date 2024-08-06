@@ -158,15 +158,15 @@
 			
 			// Calculate maintenance calories
 			var mtnKcal = weight * 28;
-			$( "#goal-mtn-info" ).html(mtnKcal);
+			$( "#goal-mtn-info" ).html(Math.round(mtnKcal * 100) / 100);
 			
 			// Calculate daily calorie goal
 			var goalKcal = mtnKcal - 400;
-			$( "#goal-cut-info" ).html(goalKcal);
+			$( "#goal-cut-info" ).html(Math.round(goalKcal * 100) / 100);
 			
 			// Calculate daily protein goal
 			var goalProtein = (goalKcal / 13);
-			$( "#goal-protein-info" ).html(goalProtein);
+			$( "#goal-protein-info" ).html(Math.round(goalProtein * 100) / 100);
 			
 			// Show results
 			$( ".fb-result" ).show();
