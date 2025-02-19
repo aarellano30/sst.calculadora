@@ -1,1 +1,379 @@
-<!doctypehtml><html lang=en><meta charset=UTF-8><meta content="width=device-width,initial-scale=1"name=viewport><title>Calculadora SST</title><style>:where(:not(html,iframe,canvas,img,svg,video,audio):not(svg*,symbol*)){all:unset;display:revert}*,::after,::before{box-sizing:border-box}a,button{cursor:revert}menu,ol,ul{list-style:none}img{max-inline-size:100%;max-block-size:100%}table{border-collapse:collapse}input,textarea{-webkit-user-select:auto}textarea{white-space:revert}meter{-webkit-appearance:revert;appearance:revert}pre{all:revert}::placeholder{color:unset}::marker{content:""}:where([hidden]){display:none}:where([contenteditable]:not([contenteditable=false])){-moz-user-modify:read-write;-webkit-user-modify:read-write;overflow-wrap:break-word;-webkit-line-break:after-white-space;-webkit-user-select:auto}:where([draggable=true]){-webkit-user-drag:element}:where(dialog:modal){all:revert}</style><style>@import url(https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Big+Shoulders+Display:wght@100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap);body{min-height:100vh;background:#252525;background:linear-gradient(180deg,rgba(33,33,33,1) 0,rgba(27,27,27,1) 25%,rgba(27,27,27,1) 100%);font-family:'Work Sans',sans-serif;color:#fefefe;padding-top:12px}img{display:block}.container{max-width:800px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center}.logo{max-width:52px}.form{margin-top:24px;display:flex;flex-direction:column;gap:18px;padding:24px;background-color:#161616;border-radius:18px}#heading{text-align:center;color:#fff;font-size:24px;font-weight:500}.input-label{display:block;margin-bottom:8px;font-size:16px}.field-inner{display:flex;align-items:baseline;font-size:22px;border-radius:8px;background-color:#34343461;width:300px;padding:12px 18px;overflow:hidden}.input-field{background:0 0;border:none;outline:0;width:100%;color:#d3d3d3}.submit{background-color:#398fa7;background-image:linear-gradient(45deg,#345964,#4e8696);cursor:pointer;padding:16px;border-radius:8px;text-align:center;text-transform:uppercase;font-weight:500}h2{font-size:22px;margin-top:24px;margin-bottom:12px}.results{margin-top:24px;width:440px;font-size:17px}.results .span-big{color:#398fa7;font-weight:500;font-size:30px;padding-bottom:7px;padding-right:4px}h2{text-align:center;font-size:13px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:32px}table{width:100%}tr{width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 0}td{align-items:center}.fb-result{display:none}</style><div class=container><img alt="LOGO SST"class=logo src=logo-min.webp><form action=# class=form><div class=field><label class=input-label for="">Estatura</label><div class=field-inner><input autocomplete=off class=input-field id=height-input name=height-input placeholder=""> <span>cm</span></div></div><div class=field><label class=input-label for="">Peso</label><div class=field-inner><input autocomplete=off class=input-field id=weight-input name=weight-input placeholder=""> <span>kg</span></div></div><button class=submit type=submit>Calcular</button></form><div class="fb-result results"><h2>Resultados</h2><table><tr><td>Estatura:<td><span class=fb-goal-info id=height-info>173</span>cm<tr><td>Peso:<td><span class=fb-goal-info id=weight-info>80</span> kg<tr><td>Calorías de mantenimiento:<td><span class=fb-goal-info id=goal-mtn-info>2000</span> kcal<tr><td>Calorías diarias para alcanzar tu<br>peso meta:<td><span class="fb-goal-info span-big"id=goal-cut-info>1868</span><span class=span-big> kcal</span><tr><td>Meta de ingesta diaria de<br>proteína:<td><span class="fb-goal-info span-big"id=goal-protein-info>143.65</span><span class=span-big> gr</span></table></div></div><script crossorigin=anonymous integrity=sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n src=https://code.jquery.com/jquery-3.4.1.slim.min.js></script><script>$("form").submit(function(t){t.preventDefault();var h=$("#height-input").val(),n=$("#weight-input").val();$("#height-info").html(h),$("#weight-info").html(n);var o=h/100,a=n/(o*o);var i=28*n;$("#goal-mtn-info").html(Math.round(100*i)/100);var l=i-400;$("#goal-cut-info").html(Math.round(100*l)/100);var r=l/13;$("#goal-protein-info").html(Math.round(100*r)/100),$(".fb-result").show()})</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora SST</title>
+    
+    <style>
+        /***
+        The new CSS reset - version 1.8.2 (last updated 23.12.2022)
+        GitHub page: https://github.com/elad2412/the-new-css-reset
+        ***/
+        
+        /*
+        Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+        - The "symbol *" part is to solve Firefox SVG sprite bug
+        */
+        *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+            all: unset;
+            display: revert;
+        }
+        
+        /* Preferred box-sizing value */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        
+        /* Reapply the pointer cursor for anchor tags */
+        a, button {
+            cursor: revert;
+        }
+        
+        /* Remove list styles (bullets/numbers) */
+        ol, ul, menu {
+            list-style: none;
+        }
+        
+        /* For images to not be able to exceed their container */
+        img {
+            max-inline-size: 100%;
+            max-block-size: 100%;
+        }
+        
+        /* removes spacing between cells in tables */
+        table {
+            border-collapse: collapse;
+        }
+        
+        /* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+            input, textarea {
+                -webkit-user-select: auto;
+            }
+            
+            /* revert the 'white-space' property for textarea elements on Safari */
+            textarea {
+                white-space: revert;
+            }
+            
+            /* minimum style to allow to style meter element */
+            meter {
+                -webkit-appearance: revert;
+                appearance: revert;
+            }
+            
+            /* preformatted text - use only for this feature */
+            pre {
+                all: revert;
+            }
+            
+            /* reset default text opacity of input placeholder */
+            ::placeholder {
+                color: unset;
+            }
+            
+            /* remove default dot (•) sign */
+            ::marker {
+                content: "";
+            }
+            
+            /* fix the feature of 'hidden' attribute.
+            display:revert; revert to element instead of attribute */
+            :where([hidden]) {
+                display: none;
+            }
+            
+            /* revert for bug in Chromium browsers
+            - fix for the content editable attribute will work properly.
+            - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+            :where([contenteditable]:not([contenteditable="false"])) {
+                -moz-user-modify: read-write;
+                -webkit-user-modify: read-write;
+                overflow-wrap: break-word;
+                -webkit-line-break: after-white-space;
+                -webkit-user-select: auto;
+            }
+            
+            /* apply back the draggable feature - exist only in Chromium and Safari */
+            :where([draggable="true"]) {
+                -webkit-user-drag: element;
+            }
+            
+            /* Revert Modal native behavior */
+            :where(dialog:modal) {
+                all: revert;
+            }
+        </style>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Big+Shoulders+Display:wght@100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+            
+            body {
+                min-height: 100vh;
+                background: rgb(37,37,37);
+                background: linear-gradient(180deg, rgba(33,33,33,1) 0%, rgba(27,27,27,1) 25%, rgba(27,27,27,1) 100%);
+                font-family: 'Work Sans', sans-serif;
+                color: #fefefe;
+                padding-top: 12px;
+                padding-bottom: 64px;
+            }
+            
+            img {
+                display: block;
+            }
+            
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .logo {
+                max-width: 52px;
+            }
+            
+            .form {
+                margin-top: 24px;
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                padding: 24px;
+                background-color: #161616;
+                border-radius: 18px;
+            }
+            
+            #heading {
+                text-align: center;
+                color: rgb(255, 255, 255);
+                font-size: 24px;
+                font-weight: 500;
+            }
+            .input-label {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 16px;
+            }
+            .field-inner {
+                display: flex;
+                align-items: baseline;
+                font-size: 22px;
+                
+                border-radius: 8px;
+                background-color: #34343461;
+                width: 300px;
+                padding: 12px 18px;
+                
+                overflow: hidden;
+            }
+            .input-field {
+                background: none;
+                border: none;
+                outline: none;
+                width: 100%;
+                color: #d3d3d3;
+            }
+            .submit {
+                background-color: #398fa7;
+                background-image: linear-gradient(45deg, #345964, #4e8696);
+                cursor: pointer;
+                
+                padding: 16px;
+                border-radius: 8px;
+                
+                text-align: center;
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+            
+            h2 {
+                font-size: 22px;
+                margin-top: 24px;
+                margin-bottom: 12px;
+            }
+            
+            .results {
+                margin-top: 24px;
+                width: 440px;
+                font-size: 17px;
+            }
+            
+            .results .span-big {
+                color: #398fa7;
+                font-weight: 500;
+                font-size: 30px;
+                padding-bottom: 7px;
+                padding-right: 4px;
+            }
+            
+            h2 {
+                text-align: center;
+                font-size: 13px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-bottom: 32px;
+            }
+            
+            table {
+                width: 100%;
+            }
+            
+            tr {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 8px 0;
+            }
+            td {
+                /* display: flex; */
+                align-items: center;
+            }
+            .fb-result {
+                display: none;
+            }
+            
+            .loading {
+                display: none;
+                margin-top: 68px;
+            }
+            
+            .loader {
+                width: 44px;
+                height: 44px;
+                border: 5px solid #FFF;
+                border-bottom-color: transparent;
+                border-radius: 50%;
+                display: inline-block;
+                box-sizing: border-box;
+                animation: rotation 1s linear infinite;
+            }
+            
+            @keyframes rotation {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            } 
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img class="logo" src="logo-full.png" alt="LOGO SST">
+            
+            <form class="form" action="#">
+                
+                <div class="field">
+                    <label class="input-label" for="">Estatura</label>
+                    <div class="field-inner">
+                        <input class="input-field" type="text" autocomplete="off" placeholder="" name="height-input" id="height-input" required>
+                        <span>cm</span>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label class="input-label" for="">Peso</label>
+                    <div class="field-inner">
+                        <input class="input-field" type="text" autocomplete="off" placeholder="" name="weight-input" id="weight-input" required>
+                        <span>kg</span>
+                    </div>
+                </div>
+                
+                <button class="submit" type="submit">Calcular</button>
+            </form>
+            
+            <div class="loading">
+                <span class="loader"></span>
+            </div>
+            
+            
+            <div class="results fb-result">
+                
+                <h2>Resultados</h2>
+                
+                <table>
+                    <tr>
+                        <td>Estatura: </td>
+                        <td><span class="fb-goal-info" id="height-info">173</span> cm</td>
+                    </tr>
+                    <tr>
+                        <td>Peso: </td>
+                        <td><span class="fb-goal-info" id="weight-info">80</span> kg</td>
+                    </tr>
+                    <tr>
+                        <td>Calorías de mantenimiento: </td>
+                        <td><span class="fb-goal-info" id="goal-mtn-info">2000</span> kcal</td>
+                    </tr>
+                    <tr>
+                        <td>Calorías diarias para alcanzar tu <br>peso meta:</td>
+                        <td><span class="span-big fb-goal-info" id="goal-cut-info">1868</span><span class="span-big"> kcal</span></td>
+                    </tr>
+                    <tr>
+                        <td>Meta de ingesta diaria de <br>proteína:</td>
+                        <td><span class="span-big fb-goal-info" id="goal-protein-info">143.65</span><span class="span-big"> gr</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        
+        <script>
+            $( "form" ).submit(function( event ) {
+                event.preventDefault();
+                
+                // Hide results
+                $('.results').hide();
+                // Show spinner
+                $('.loading').show();
+                
+                setTimeout(() => {
+                    $('.loading').hide();
+                    displayResults();
+                }, 1000);
+                
+                function displayResults() {
+                    // Get values
+                    var height = $( "#height-input" ).val();
+                    var weight = $( "#weight-input" ).val();
+                    
+                    // Fill result values
+                    $( "#height-info" ).html(height);
+                    $( "#weight-info" ).html(weight);
+                    // $( "#age-info" ).html(age);
+                    
+                    // Calculate BMI
+                    var heightInMeters = height / 100;
+                    var bmi = weight / (heightInMeters * heightInMeters);
+                    
+                    // Calculate required deficit
+                    var deficit;
+                    if (bmi < 24.91) { deficit = .10; }
+                    else if (bmi < 29.91) { deficit = .20; }
+                    else if (bmi < 34.91) { deficit = .25; }
+                    else { deficit = .30; }
+                    
+                    // Calculate maintenance calories
+                    var mtnKcal = weight * 28;
+                    $( "#goal-mtn-info" ).html(Math.round(mtnKcal * 100) / 100);
+                    
+                    // Calculate daily calorie goal
+                    var goalKcal = mtnKcal - 400;
+                    $( "#goal-cut-info" ).html(Math.round(goalKcal * 100) / 100);
+                    
+                    // Calculate daily protein goal
+                    var goalProtein = (goalKcal / 13);
+                    $( "#goal-protein-info" ).html(Math.round(goalProtein * 100) / 100);
+                    
+                    // Show results
+                    $( ".fb-result" ).show();
+                }
+                
+            });
+        </script>
+    </body>
+    </html>
