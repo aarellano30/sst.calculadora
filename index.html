@@ -362,11 +362,11 @@
                     $( "#goal-mtn-info" ).html(Math.round(mtnKcal * 100) / 100);
                     
                     // Calculate daily calorie goal
-                    var goalKcal = mtnKcal - 400;
+                    var goalKcal = mtnKcal - 500;
                     $( "#goal-cut-info" ).html(Math.round(goalKcal * 100) / 100);
                     
                     // Calculate daily protein goal
-                    var goalProtein = (goalKcal / 13);
+                    var goalProtein = (goalKcal * .1);
                     $( "#goal-protein-info" ).html(Math.round(goalProtein * 100) / 100);
                     
                     // Show results
